@@ -10,4 +10,8 @@ public interface StudentRepository {
     public List<StudentModel> getusers();
 
     public StudentModel getUserById(int id);
+
+    public void updatestudentmodel(StudentModel studentModel);
+
+    public void deletestudent(int id);
 }

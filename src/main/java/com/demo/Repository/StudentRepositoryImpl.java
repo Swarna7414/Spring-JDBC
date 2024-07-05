@@ -57,6 +57,16 @@ public class StudentRepositoryImpl implements StudentRepository{
         model.setMarks(rs.getInt("marks"));
         return model;
     }
+
+    public void updatestudentmodel(StudentModel model){
+        String query = "UPDATE Student.users SET name = ?, roll=?, age = ?, marks = ? where id =?";
+        jdbcTemplate.update(query,model.getName(),model.getRoll(),model.getAge(),model.getMarks());
+    }
+
+    public void deletestudent(int id){
+        String query ="DELETE FROM Student.users WHERE ID = ?";
+        jdbcTemplate.update(query,id);
+    }
 }
 
 

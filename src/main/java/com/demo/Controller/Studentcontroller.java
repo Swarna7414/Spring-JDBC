@@ -35,4 +35,16 @@ public class Studentcontroller {
         }
     }
 
+    @PutMapping("/updated")
+    public String uppdatestudent(@RequestBody StudentModel studentModel){
+        studentRepository.updatestudentmodel(studentModel);
+        return "Student details has been updated" + studentModel.getName();
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteone(@PathVariable int id){
+        studentRepository.deletestudent(id);
+        return "Student detals has been deleted";
+    }
+
 }
