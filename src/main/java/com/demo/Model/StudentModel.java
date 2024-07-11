@@ -1,24 +1,28 @@
 package com.demo.Model;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
-@Data
+@Table("students")
 public class StudentModel {
-    public StudentModel() {
-    }
-    public StudentModel(int id, String name, int roll, int age, int marks) {
-        this.id = id;
-        this.name = name;
-        this.roll = roll;
-        this.age = age;
-        this.marks = marks;
-    }
 
+
+    @Id
     private int id;
     private String name;
-    private int roll;
-    private int age;
-    private int marks;
+    private String std;
+    private String marks;
+
+    public StudentModel() {
+    }
+
+    public StudentModel(int id, String name, String std, String marks) {
+        this.id = id;
+        this.name = name;
+        this.std = std;
+        this.marks = marks;
+    }
 
     public int getId() {
         return id;
@@ -36,27 +40,19 @@ public class StudentModel {
         this.name = name;
     }
 
-    public int getRoll() {
-        return roll;
+    public String getStd() {
+        return std;
     }
 
-    public void setRoll(int roll) {
-        this.roll = roll;
+    public void setStd(String std) {
+        this.std = std;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public int getMarks() {
+    public String getMarks() {
         return marks;
     }
 
-    public void setMarks(int marks) {
+    public void setMarks(String marks) {
         this.marks = marks;
     }
 }

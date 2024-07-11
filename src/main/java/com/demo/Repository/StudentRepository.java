@@ -5,13 +5,10 @@ import com.demo.Model.StudentModel;
 import java.util.List;
 
 public interface StudentRepository {
-    public void createupser(StudentModel stdent);
+    public String createstudent(StudentModel model);
 
-    public List<StudentModel> getusers();
+    public List<StudentModel> getallstudents();
 
-    public StudentModel getUserById(int id);
+    public StudentModel getstudent(int id);
 
-    public void updatestudentmodel(StudentModel studentModel);
-
-    public void deletestudent(int id);
 }
