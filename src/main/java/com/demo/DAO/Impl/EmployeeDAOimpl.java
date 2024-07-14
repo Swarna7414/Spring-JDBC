@@ -30,6 +30,19 @@ public class EmployeeDAOimpl implements EmployeeDao {
         return jdbcTemplate.query(query,new EmployeeRowMapper());
     }
 
+/*    @Override   or ELSE WE CAN ALSO WRITE LIKE THIS : ) 
+    public List<StudentModel> getallstudents() {
+        String quary="SELECT * FROM Student.students";
+        return jdbcTemplate.query(quary,(rs,rownum)->
+                new StudentModel(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("std"),
+                        rs.getString("marks")
+                )
+        );
+    }*/
+
     @Override
     public EmployeeModel getonebyid(Integer id) {
         String quary= "SELECT * FROM Student.employee WHERE id =?";
