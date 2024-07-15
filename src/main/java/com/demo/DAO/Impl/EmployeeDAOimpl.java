@@ -5,17 +5,20 @@ import com.demo.Model.EmployeeModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class EmployeeDAOimpl implements EmployeeDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
 
     @Override
     public String CreateEmployee(EmployeeModel employee) {
@@ -47,6 +50,12 @@ public class EmployeeDAOimpl implements EmployeeDao {
     public EmployeeModel getonebyid(Integer id) {
         String quary= "SELECT * FROM Student.employee WHERE id =?";
         return jdbcTemplate.queryForObject(quary,new Object[]{id},new EmployeeRowMapper());
+    }
+
+    @Override
+    public List<Map<String, Object>> mapping() {
+        String sql="SELECT name, experience from Student.employee";
+        return jdbcTemplate.queryForList(sql);
     }
 
     private static final class EmployeeRowMapper implements RowMapper<EmployeeModel>{
