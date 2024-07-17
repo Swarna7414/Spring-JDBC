@@ -30,6 +30,7 @@ public class StudentController {
         return studentDao.findbyid(roll);
     }
 
+<<<<<<< HEAD
     @PutMapping
     public String updateone(@RequestBody StudentModel studentModel){
         return studentDao.updatebyid(studentModel);
@@ -40,4 +41,6 @@ public class StudentController {
         return studentDao.deletebyid(roll);
     }
 
+=======
+>>>>>>> origin/master
 }

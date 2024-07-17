@@ -54,33 +54,6 @@ public class StudentDaoImpl implements StudentDAO{
         return studentModel;
     }
 
-    @Override
-    public String updatebyid(StudentModel studentModel) {
-        String sql="UPDATE student.students SET age=? WHERE roll=?";
-        jdbcTemplate.update(sql,studentModel.getAge(),studentModel.getRoll());
-
-        String del="DELETE FROM student.electives WHERE roll=?";
-        jdbcTemplate.update(del,studentModel.getRoll());
-
-        for (String elective:studentModel.getElectives()){
-            String txt="INSERT INTO student.electives(roll, elective) VALUES (?, ?)";
-            jdbcTemplate.update(txt,studentModel.getRoll(),elective);
-        }
-        return "Student updated";
-    }
-
-    @Override
-    public String deletebyid(int roll) {
-        String txt1="DELETE FROM student.electives WHERE roll=?";
-        jdbcTemplate.update(txt1,roll);
-
-        String txt="DELETE FROM student.students WHERE roll=?";
-        jdbcTemplate.update(txt,roll);
-
-
-        return "Student detals deleted with roll"+roll;
-    }
-
 
     private static final RowMapper<StudentModel> studentRowMapper = new RowMapper<StudentModel>() {
         @Override
