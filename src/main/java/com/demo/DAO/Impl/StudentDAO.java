@@ -10,4 +10,8 @@ public interface StudentDAO {
     public List<StudentModel> getall();
 
     public StudentModel findbyid(int roll);
+
+    public String updatebyid(StudentModel studentModel);
+
+    public String deletedetails(int roll);
 }

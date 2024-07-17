@@ -30,7 +30,7 @@ public class StudentController {
         return studentDao.findbyid(roll);
     }
 
-<<<<<<< HEAD
+
     @PutMapping
     public String updateone(@RequestBody StudentModel studentModel){
         return studentDao.updatebyid(studentModel);
@@ -38,9 +38,8 @@ public class StudentController {
 
     @DeleteMapping("delete/{roll}")
     public String deletedetails(@PathVariable int roll){
-        return studentDao.deletebyid(roll);
+        return studentDao.deletedetails(roll);
     }
 
-=======
->>>>>>> origin/master
+
 }
