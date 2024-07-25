@@ -1,17 +1,18 @@
 package com.demo.DAO.Impl;
 
-import com.demo.Model.StudentModel;
+import com.demo.Model.Student;
 
 import java.util.List;
 
 public interface StudentDAO {
-    public void save(StudentModel studentModel);
 
-    public List<StudentModel> getall();
+    public void Createdetails(Student student);
 
-    public StudentModel findbyid(int roll);
+    public Student getone(int roll);
 
-    public String updatebyid(StudentModel studentModel);
+    public List<Student> getall();
 
-    public String deletedetails(int roll);
+    public String updatedone(Student student);
+
+    public String delete(int roll);
 }

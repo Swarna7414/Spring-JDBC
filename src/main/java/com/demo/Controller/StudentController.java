@@ -1,45 +1,32 @@
 package com.demo.Controller;
 
 import com.demo.DAO.Impl.StudentDAO;
-import com.demo.DAO.Impl.StudentDaoImpl;
-import com.demo.Model.StudentModel;
+import com.demo.Model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/student")
+@RequestMapping ("/student")
 public class StudentController {
 
     @Autowired
-    private StudentDAO studentDao;
+    private StudentDAO studentDAO;
 
-    @PostMapping
-    public void createstudent(@RequestBody StudentModel studentModel){
-        studentDao.save(studentModel);
-    }
-
-    @GetMapping
-    public List<StudentModel> geall(){
-        return studentDao.getall();
+    @PostMapping("/create")
+    public String createdetails(@RequestBody Student student){
+        studentDAO.Createdetails(student);
+        return "Detils Successfully created";
     }
 
     @GetMapping("/one/{roll}")
-    public StudentModel getone(@PathVariable int roll){
-        return studentDao.findbyid(roll);
+    public Student getone(@PathVariable int roll){
+        return studentDAO.getone(roll);
     }
 
-
-    @PutMapping
-    public String updateone(@RequestBody StudentModel studentModel){
-        return studentDao.updatebyid(studentModel);
+    @GetMapping("/all")
+    public List<Student> getall(){
+        return studentDAO.getall();
     }
-
-    @DeleteMapping("delete/{roll}")
-    public String deletedetails(@PathVariable int roll){
-        return studentDao.deletedetails(roll);
-    }
-
-
 }
