@@ -29,4 +29,15 @@ public class StudentController {
     public List<Student> getall(){
         return studentDAO.getall();
     }
+
+    @PutMapping("/changedone")
+    public String updaterequestmethod(@RequestBody Student student){
+        return studentDAO.updatedone(student);
+    }
+
+    @DeleteMapping("/delete/{roll}")
+    public String deleteid(@PathVariable int roll){
+        return studentDAO.delete(roll);
+    }
+
 }

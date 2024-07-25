@@ -95,12 +95,49 @@ public class StudentImplDAO implements StudentDAO {
 
     @Override
     public String updatedone(Student student) {
-        return null;
+
+        int count=student.getMarks().size();
+        float totalmarks=0;
+        for(Map.Entry<String, Integer> i: student.getMarks().entrySet()){
+            totalmarks+=i.getValue();
+        }
+        float percentage=totalmarks/count;
+        student.setPercentage(percentage);
+
+        String statement="update student.students SET name= ?, age=?, percentage=? where roll =?";
+        jdbcTemplate.update(statement,student.getName(),student.getAge(),student.getPercentage(),student.getRoll());
+
+        //deleted the Elements present in the table.
+        String statementdelete="delete from student.electives where roll=?";
+        jdbcTemplate.update(statementdelete,student.getRoll());
+
+        // inserted to the table.
+        String insertelect="insert into student.electives(roll,elective_name) values(?,?)";
+        for(String i: student.getElectives()){
+            jdbcTemplate.update(insertelect,student.getRoll(),i);
+        }
+
+        String Deletemap="delete from student.marks where roll=?";
+        jdbcTemplate.update(Deletemap,student.getRoll());
+
+        String insertmarks="insert into student.marks(roll,subject_name,mark) values(?,?,?)";
+        for (Map.Entry<String, Integer> i: student.getMarks().entrySet()){
+            jdbcTemplate.update(insertmarks,student.getRoll(),i.getKey(),i.getValue());
+        }
+
+        return "Updated values successfully";
     }
 
     @Override
     public String delete(int roll) {
-        return null;
+        String statementmap="delete from student.marks where roll=?";
+        jdbcTemplate.update(statementmap,roll);
+        String statemente="delete from student.electives where roll=?";
+        jdbcTemplate.update(statemente,roll);
+        String Statement="delete from student.students where roll=?";
+        jdbcTemplate.update(Statement,roll);
+
+        return "Deleted Values Successfully";
     }
 
     public static class StudentMapper implements RowMapper<Student>{
